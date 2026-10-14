@@ -1,0 +1,157 @@
+:root {
+    --chalkboard-bg: #1b262c;
+    --grid-line: rgba(255, 255, 255, 0.05);
+    --grid-line-major: rgba(255, 255, 255, 0.12);
+    --primary-accent: #00adb5;
+    --chalk-white: #f8f9fa;
+    --text-muted: #a0aec0;
+    --card-bg: rgba(30, 41, 59, 0.85);
+    --success-color: #2ec4b6;
+    --error-color: #e71d36;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Fira Code', monospace, sans-serif;
+    background-color: var(--chalkboard-bg);
+    
+    /* Math Graph Paper Background Grid */
+    background-image: 
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(var(--grid-line-major) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line-major) 1px, transparent 1px);
+    background-size: 10px 10px, 10px 10px, 50px 50px, 50px 50px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+    
+    color: var(--chalk-white);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Restrain main container width */
+h1, form, #verify {
+    width: 100%;
+    max-width: 440px;
+}
+
+/* Math Club Header */
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+    margin-bottom: 24px;
+    text-shadow: 0 0 12px rgba(0, 173, 181, 0.6);
+}
+
+h1::before {
+    content: "∑ ";
+    color: var(--primary-accent);
+}
+
+h1::after {
+    content: " ∆";
+    color: var(--primary-accent);
+}
+
+/* Form Card Container */
+form {
+    background: var(--card-bg);
+    padding: 30px 25px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+}
+
+/* Text Input Field */
+input[type="text"] {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: #ffffff;
+    background-color: rgba(15, 23, 42, 0.8);
+    border: 2px solid #334155;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-bottom: 18px;
+}
+
+input[type="text"]::placeholder {
+    color: var(--text-muted);
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 12px rgba(0, 173, 181, 0.4);
+    background-color: rgba(15, 23, 42, 0.95);
+}
+
+/* Search Button */
+input[type="button"] {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #0f172a;
+    background: linear-gradient(135deg, #00adb5, #00fff5);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 173, 181, 0.3);
+}
+
+input[type="button"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 173, 181, 0.5);
+}
+
+input[type="button"]:active {
+    transform: translateY(1px);
+}
+
+/* Result Output Box (#verify) */
+#verify {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+/* Styles automatically when PyScript inserts output */
+#verify:not(:empty) {
+    padding: 18px 24px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
